@@ -5,6 +5,7 @@
 //  Created by Jaewon Yun on 2023/01/10.
 //
 
+import ItsMEUtil
 import RxSwift
 import SnapKit
 import Then
@@ -123,10 +124,10 @@ extension PhoneNumberEditingViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let isEntering = !(range.length > 0)
-        let expectedText: String
+        let enteredText: String
         
         if isEntering {
-            expectedText = (textField.text ?? "") + string
+            enteredText = (textField.text ?? "") + string
         } else {
             guard
                 var currentText = textField.text,
@@ -136,10 +137,11 @@ extension PhoneNumberEditingViewController: UITextFieldDelegate {
             }
             
             currentText.removeSubrange(removeRange)
-            expectedText = currentText
+            enteredText = currentText
         }
         
-        textField.text = formatPhoneNumber(expectedText)
+        textField.text = formatPhoneNumber(enteredText)
+        textField.sendActions(for: .valueChanged)
         return false
     }
 }

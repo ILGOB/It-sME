@@ -6,6 +6,7 @@
 //
 
 import FirebaseStorage
+import ItsMEUtil
 import UIKit
 import RxSwift
 import SFSafeSymbols
@@ -35,7 +36,7 @@ final class HomeViewController: UIViewController {
     private lazy var profileEditingButton: UIButton = {
         let action = UIAction { _ in
             let profileEditingViewController = DIContainer.makeProfileEditingViewController(
-                initalProfileImageData: self.profileImageView.image?.jpegData(compressionQuality: 1.0),
+                initialProfileImageData: self.profileImageView.image?.jpegData(compressionQuality: 1.0),
                 initialUserProfile: self.viewModel.userInfo
             )
             let profileEditingNavigationController: UINavigationController = .init(rootViewController: profileEditingViewController)
@@ -50,7 +51,7 @@ final class HomeViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
-        button.accessibilityIdentifier = "HOME_EDIT_PROFILE"
+        button.accessibilityIdentifier = "HOME__EDIT_PROFILE"
         return button
     }()
     
